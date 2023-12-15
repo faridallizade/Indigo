@@ -1,0 +1,46 @@
+﻿@using Indigo.Models;
+@model List<Product>
+@{
+    var count = 0;
+}
+<div class="container">
+    <div class="row">
+        <div>
+            <a class="btn btn-primary" asp-controller="Product" asp-action="Create">Create</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <img style="width: 60px" src="~/assets/images/@item.ImgUrl">
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" asp-controller="Product" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                            <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
